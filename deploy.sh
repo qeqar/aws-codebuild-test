@@ -33,8 +33,8 @@ set -xe
 git clone https://${GITHUB_USER}:${GITHUB_ACCESS_TOKEN}@github.com/qeqar/aws-codebuild-test.git DEPLOYMETEMP
 
 cd DEPLOYMETEMP
-git config user.email "ito-peng@kaufhof.de"
-git config user.name "AWS Code Build"
+git config user.email "${GIT_AUTHOR_NAME}"
+git config user.name "${GIT_AUTHO_EMAIL}"
 
 git tag AWS-was-here
 git push --tags
