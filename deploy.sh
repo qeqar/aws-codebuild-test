@@ -30,7 +30,7 @@ DEBUG Left to Deploy: ${TAGSLEFTTODEPLOY}
 
 DEBUG Cloning now:
 set -xe
-git clone https://github.com/qeqar/aws-codebuild-test.git DEPLOYMETEMP
+git clone https://qeqar@github.com/qeqar/aws-codebuild-test.git DEPLOYMETEMP
 
 cd DEPLOYMETEMP
 git config user.email "ito-peng@kaufhof.de"
