@@ -8,7 +8,7 @@ function DEBUG() {
   fi
 }
 
-env
+env | sort
 
 #set -x
 
