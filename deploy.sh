@@ -1,8 +1,38 @@
 #!/usr/bin/env bash
 
-set x
+DEBUG=1
 
-TAGS=$(git tag)
+function DEBUG() {
+  if [ $DEBUG ]; then
+    echo DEBUG: $*
+  fi
+}
+
+env
+
+#set -x
+
+TAGS=$(git tag | sort)
+TAGSTODEPLOY=$(echo "${TAGS}" | grep "\-deployme$" | cut -d '-' -f 1)
+TAGSDEPLOYED=$(echo "${TAGS}" | grep "\-deployed$" | cut -d '-' -f 1)
+TAGSLEFTTODEPLOY=""
+DEBUG To Deploy Tags: ${TAGSTODEPLOY}
+DEBUG Deployed  Tags: ${TAGSDEPLOYED}
+DEBUG Working List
+for TAG in ${TAGSTODEPLOY}; do
+  if [[ ${TAGSDEPLOYED} == *"${TAG}"* ]]; then
+    DEBUG Already deployed... $TAG
+  else
+    TAGSLEFTTODEPLOY="${TAGSLEFTTODEPLOY} ${TAG}"
+  fi
+done
+DEBUG Left to Deploy: ${TAGSLEFTTODEPLOY}
+
+DEBUG Cloning now:
+set -x
+git clone https://github.com/qeqar/aws-codebuild-test.git DEPLOYMETEMP
+
+exit 0
 NOW=$(date +%Y%m%d%H%M)
 
 for TAG in ${TAGS}; do
@@ -14,3 +44,20 @@ done
 
 exit 1
 
+
+timestamp-deployme
+timestamp-deployed
+
+sortieren
+deployed ignorieren
+
+< now deployen
+
+sortieren
+schleife
+ältestes bis neustes
+
+deployen
+tag "deployed" setzen mit altem timestamp
+
+git push --tags
