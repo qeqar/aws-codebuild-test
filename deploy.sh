@@ -34,7 +34,9 @@ git clone https://github.com/qeqar/aws-codebuild-test.git DEPLOYMETEMP
 
 cd DEPLOYMETEMP
 git config user.email "ito-peng@kaufhof.de"
-git config  user.name "AWS Code Build"
+git config user.name "AWS Code Build"
+git config github.token ${GIT_ACCESS_TOKEN}
+
 
 git tag AWS-was-here
 git push --tags
