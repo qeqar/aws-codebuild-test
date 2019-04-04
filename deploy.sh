@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set x
+
 TAGS=$(git tag)
 NOW=$(date +%Y%m%d%H%M)
 
