@@ -32,7 +32,7 @@ DEBUG Cloning now:
 set -xe
 git config -l
 
-git clone https://qeqar@github.com/qeqar/aws-codebuild-test.git DEPLOYMETEMP
+git clone https://qeqar:${GIT_ACCESS_TOKEN}@github.com/qeqar/aws-codebuild-test.git DEPLOYMETEMP
 
 cd DEPLOYMETEMP
 git config user.email "ito-peng@kaufhof.de"
