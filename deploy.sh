@@ -29,8 +29,12 @@ done
 DEBUG Left to Deploy: ${TAGSLEFTTODEPLOY}
 
 DEBUG Cloning now:
-set -x
+set -xe
 git clone https://github.com/qeqar/aws-codebuild-test.git DEPLOYMETEMP
+
+cd DEPLOYMETEMP
+git tag -a AWS-was-here
+git push --tags
 
 exit 0
 NOW=$(date +%Y%m%d%H%M)
