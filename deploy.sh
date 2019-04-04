@@ -30,11 +30,12 @@ DEBUG Left to Deploy: ${TAGSLEFTTODEPLOY}
 
 DEBUG Cloning now:
 set -xe
-git config user.email "ito-peng@kaufhof.de"
-git config  user.name "AWS Code Build"
 git clone https://github.com/qeqar/aws-codebuild-test.git DEPLOYMETEMP
 
 cd DEPLOYMETEMP
+git config user.email "ito-peng@kaufhof.de"
+git config  user.name "AWS Code Build"
+
 git tag -a AWS-was-here
 git push --tags
 
