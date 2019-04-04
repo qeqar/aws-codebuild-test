@@ -3,4 +3,4 @@ version: 0.2
 phases:
   install:
     commands:
-      - cat output.txt
+      - ./deploy.sh
