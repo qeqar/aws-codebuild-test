@@ -31,6 +31,9 @@ done
 DEBUG Left to Deploy: ${TAGSLEFTTODEPLOY}
 
 for TAG in ${TAGSLEFTTODEPLOY}; do
+  TAGWITHSECONDS="${TAG}00"
+  TAGREADABLE=$(date -d "${TAGWITHSECONDS:0:8} ${TAGWITHSECONDS:8:2}:${TAGWITHSECONDS:10:2}:${TAGWITHSECONDS:12:2}")
+  DEBUG "Processing Tag ${TAG} which is set to deploy at ${TAGREADABLE}"
   NOW=$(date +%Y%m%d%H%M)
   if [[ ${TAG} -ge ${NOW} ]]; then
     DEBUG $TAG is in the future, aborting Deployment process
