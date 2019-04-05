@@ -80,6 +80,13 @@ resource "aws_iam_role_policy" "CodeBuildIAMPolicy" {
       "Effect": "Allow",
       "Action": ["cloudfront:CreateInvalidation"],
       "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": ["codebuild:StartBuild"],
+      "Resource": [
+        "${aws_codebuild_project.CodeBuildProject.arn}"
+      ]
     }
   ]
 }
