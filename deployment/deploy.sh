@@ -2,6 +2,9 @@
 
 DEBUG=1
 
+# No UTC please ;)
+TZ=":Europe/Berlin"
+
 function DEBUG() {
   if [ $DEBUG ]; then
     echo DEBUG: $*
