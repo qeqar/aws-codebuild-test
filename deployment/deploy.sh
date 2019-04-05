@@ -8,6 +8,8 @@ function DEBUG() {
   fi
 }
 
+source .secretenv 2> /dev/null
+
 env | sort
 
 #set -x
@@ -28,43 +30,22 @@ for TAG in ${TAGSTODEPLOY}; do
 done
 DEBUG Left to Deploy: ${TAGSLEFTTODEPLOY}
 
-DEBUG Cloning now:
-set -xe
-git clone https://${GITHUB_USER}:${GITHUB_ACCESS_TOKEN}@github.com/qeqar/aws-codebuild-test.git DEPLOYMETEMP
+for TAG in ${TAGSLEFTTODEPLOY}; do
+  DEBUG Cloning Tag ${TAG}-deployme now:
+  rm -rf DEPLOYMETMP
+  set -e
+  git clone https://${GITHUB_USER}:${GITHUB_ACCESS_TOKEN}@github.com/qeqar/aws-codebuild-test.git DEPLOYMETMP
 
-cd DEPLOYMETEMP
-git config user.email "${GIT_AUTHOR_NAME}"
-git config user.name "${GIT_AUTHO_EMAIL}"
+  cd DEPLOYMETMP
+  git checkout ${TAG}-deployme
+  git log -1
+  aws s3 sync --delete content/ s3://www.feelx.de/
+  aws cloudfront create-invalidation --distribution-id E1646E9SZ98W2F --path '/*'
+  git config user.email "${GIT_AUTHOR_NAME}"
+  git config user.name "${GIT_AUTHO_EMAIL}"
 
-git tag AWS-was-here
-git push --tags
-
-exit 0
-NOW=$(date +%Y%m%d%H%M)
-
-for TAG in ${TAGS}; do
-    echo ${TAG}
-    if [[ ${TAG} -le ${NOW} ]]; then
-        exit 0
-    fi
+  git tag ${TAG}-deployed
+  git push --tags
+  cd ..
 done
-
-exit 1
-
-
-timestamp-deployme
-timestamp-deployed
-
-sortieren
-deployed ignorieren
-
-< now deployen
-
-sortieren
-schleife
-ältestes bis neustes
-
-deployen
-tag "deployed" setzen mit altem timestamp
-
-git push --tags
+exit 0
