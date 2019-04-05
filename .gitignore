@@ -11,3 +11,6 @@ crash.log
 # version control.
 #
 # example.tfvars
+
+# ignore temp deployment files
+deployment/DEPLOYMETMP
