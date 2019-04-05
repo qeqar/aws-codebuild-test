@@ -75,7 +75,12 @@ resource "aws_iam_role_policy" "CodeBuildIAMPolicy" {
         "ssm:GetParameters"
       ],
       "Resource": "*"
-     }
+    },
+    {
+      "Effect": "Allow",
+      "Action": ["cloudfront:CreateInvalidation"],
+      "Resource": "*"
+    }
   ]
 }
 POLICY
