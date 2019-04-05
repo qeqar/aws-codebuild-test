@@ -1,3 +1,7 @@
+data "aws_s3_bucket" "CodeBuildDeployBucket" {
+  bucket = "www.feelx.de"
+}
+
 resource "aws_iam_role" "CodeBuildIAMRole" {
   name = "${var.project_name}-service-role"
 
@@ -54,8 +58,8 @@ resource "aws_iam_role_policy" "CodeBuildIAMPolicy" {
         "s3:*"
       ],
       "Resource": [
-        "${aws_s3_bucket.CodeBuildLogBucket.arn}",
-        "${aws_s3_bucket.CodeBuildLogBucket.arn}"
+        "${data.aws_s3_bucket.CodeBuildDeployBucket.arn}",
+        "${data.aws_s3_bucket.CodeBuildDeployBucket.arn}/*"
       ]
     },
     {
