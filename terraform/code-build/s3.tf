@@ -1,4 +1,4 @@
-resource "aws_s3_bucket" "code_build_log_bucket" {
+resource "aws_s3_bucket" "CodeBuildLogBucket" {
   bucket = "${var.project_name}-code-build-logs"
   acl    = "private"
 
