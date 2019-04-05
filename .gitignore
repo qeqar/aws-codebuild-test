@@ -14,3 +14,5 @@ crash.log
 
 # ignore temp deployment files
 deployment/DEPLOYMETMP
+
+deployment/.secretenv
