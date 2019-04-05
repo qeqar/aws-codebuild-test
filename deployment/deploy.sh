@@ -47,5 +47,6 @@ for TAG in ${TAGSLEFTTODEPLOY}; do
   git tag ${TAG}-deployed
   git push --tags
   cd ..
+  exit 0
 done
 exit 0
