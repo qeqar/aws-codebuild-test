@@ -4,6 +4,7 @@ resource "aws_codebuild_project" "CodeBuildProject" {
   build_timeout = "5"
   service_role  = "${aws_iam_role.CodeBuildIAMRole.arn}"
   tags          = "${var.aws_tags}"
+  badge_enabled = true
 
   environment {
     compute_type                = "BUILD_GENERAL1_SMALL"
