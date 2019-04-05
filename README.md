@@ -20,3 +20,7 @@ To Update Content and set a time of deployment:
  ++ git push --tags
 
 
+Manuelle Schitte:
+ + Github Connect
+ + Parameter Store -> GithubAccount -> Token
+ + Build Trigger
