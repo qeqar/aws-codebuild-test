@@ -31,6 +31,12 @@ done
 DEBUG Left to Deploy: ${TAGSLEFTTODEPLOY}
 
 for TAG in ${TAGSLEFTTODEPLOY}; do
+  NOW=$(date +%Y%m%d%H%M)
+  if [[ ${TAG} -ge ${NOW} ]]; then
+    DEBUG $TAG is in the future, aborting Deployment process
+    exit 0
+  fi
+
   DEBUG Cloning Tag ${TAG}-deployme now:
   rm -rf DEPLOYMETMP
   set -e
@@ -39,7 +45,9 @@ for TAG in ${TAGSLEFTTODEPLOY}; do
   cd DEPLOYMETMP
   git checkout ${TAG}-deployme
   git log -1
+  DEBUG Deploying to S3
   aws s3 sync --delete content/ s3://www.feelx.de/
+  DEBUG Invalidating Cloudfront
   aws cloudfront create-invalidation --distribution-id E1646E9SZ98W2F --path '/*'
   git config user.email "${GIT_AUTHOR_NAME}"
   git config user.name "${GIT_AUTHO_EMAIL}"
