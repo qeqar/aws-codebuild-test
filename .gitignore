@@ -2,6 +2,7 @@
 ### Terraform template
 # Local .terraform directories
 **/.terraform/*
+*.tfstate.backup
 
 # Crash log files
 crash.log
