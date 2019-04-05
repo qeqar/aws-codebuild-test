@@ -47,3 +47,16 @@ resource "aws_codebuild_project" "CodeBuildProject" {
   }
 
 }
+
+resource "aws_cloudwatch_event_rule" "CloudBuildEvent" {
+  name        = "every_5_min"
+  description = "Build every 5 min"
+  schedule_expression = "rate(5 minutes)"
+}
+
+resource "aws_cloudwatch_event_target" "CodeBuildTarget" {
+  target_id = "CodeBuild"
+  rule      = "${aws_cloudwatch_event_rule.CloudBuildEvent.name}"
+  arn       = "${aws_codebuild_project.CodeBuildProject.arn}"
+  role_arn  = "${aws_iam_role.CodeBuildIAMRole.arn}"
+}

@@ -23,5 +23,4 @@ To Update Content and set a time of deployment:
 Manuelle Schitte:
  + Github Connect
  + Parameter Store -> GithubAccount -> Token
- + Build Trigger
  + bei komplet neuem codebuild job muss ggf die badge url upgadated werden
