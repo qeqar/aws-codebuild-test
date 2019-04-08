@@ -58,5 +58,5 @@ resource "aws_cloudwatch_event_target" "CodeBuildTarget" {
   target_id = "CodeBuild"
   rule      = "${aws_cloudwatch_event_rule.CloudBuildEvent.name}"
   arn       = "${aws_codebuild_project.CodeBuildProject.arn}"
-  role_arn  = "${aws_iam_role.CodeBuildIAMRole.arn}"
+  role_arn  = "${aws_iam_role.CloudWatchEventIAMRole.arn}"
 }

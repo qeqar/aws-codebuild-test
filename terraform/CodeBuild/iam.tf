@@ -92,3 +92,41 @@ resource "aws_iam_role_policy" "CodeBuildIAMPolicy" {
 }
 POLICY
 }
+
+resource "aws_iam_role" "CloudWatchEventIAMRole" {
+  name = "${var.project_name}-event-role"
+  path = "/service-role/"
+  assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "events.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+EOF
+}
+
+resource "aws_iam_role_policy" "CloudWatchEventIAMPolicy" {
+  role = "${aws_iam_role.CloudWatchEventIAMRole.name}"
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": ["codebuild:StartBuild"],
+      "Resource": [
+        "${aws_codebuild_project.CodeBuildProject.arn}"
+      ]
+    }
+  ]
+}
+POLICY
+}
