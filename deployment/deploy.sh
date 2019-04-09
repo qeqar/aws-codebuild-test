@@ -53,9 +53,9 @@ for TAG in ${TAGSLEFTTODEPLOY}; do
   git checkout ${TAG}-deployme
   git log -1
   DEBUG Deploying to S3
-  aws s3 sync --delete content/ s3://www.feelx.de/
+  aws s3 sync --delete content/ s3://www.example.de/
   DEBUG Invalidating Cloudfront
-  aws cloudfront create-invalidation --distribution-id E1646E9SZ98W2F --path '/*'
+  aws cloudfront create-invalidation --distribution-id E8469E9SZ98W2F --path '/*'
   git config user.email "${GIT_AUTHOR_NAME}"
   git config user.name "${GIT_AUTHO_EMAIL}"
 

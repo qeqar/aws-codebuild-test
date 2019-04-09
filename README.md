@@ -1,6 +1,6 @@
 # AWS CodeBuild Test
 
-![CodeBuild badge](https://codebuild.eu-central-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiaXVsR043TXQvaFdMVVNzMTQyRml5WTVBb3pHTXcvVElIcFRtM21uaDAzbjZaNy8rRjFIRWxUUWVTdmo1MERvRVNhbFdsaTVhVCs5SVJIQk0zdTFtLzlJPSIsIml2UGFyYW1ldGVyU3BlYyI6InBGN3gyT0RsVHNMdHVJRzgiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
+![CodeBuild badge](https://URL-de/to/build/badge)
 
 Some testing to get a CodeBuild running
 

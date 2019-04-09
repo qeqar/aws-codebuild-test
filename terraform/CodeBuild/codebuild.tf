@@ -21,7 +21,7 @@ resource "aws_codebuild_project" "CodeBuildProject" {
     }
     environment_variable {
       "name"  = "GITHUB_AUTHOR_EMAIL"
-      "value" = "ito-peng@kaufhof.de"
+      "value" = "${var.aws_tags.author_email}"
     }
 
     # Manually fill the variable in the EC2 Parameter Store

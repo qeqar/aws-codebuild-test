@@ -1,5 +1,5 @@
 data "aws_s3_bucket" "CodeBuildDeployBucket" {
-  bucket = "www.feelx.de"
+  bucket = "www.example.de"
 }
 
 resource "aws_iam_role" "CodeBuildIAMRole" {
